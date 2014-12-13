@@ -1,6 +1,8 @@
 var app = angular.module('breizh-emeraude', [
 	'ngMaterial',
-	'ngRoute'
+	'ngRoute',
+	'angular-loading-bar',
+	'ngAnimate'
 ]);
 
 app.config(function($routeProvider, $httpProvider) {

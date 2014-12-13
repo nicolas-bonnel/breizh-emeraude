@@ -170,25 +170,6 @@
 			]
 		},
 		{
-			"name":"Nature",
-			"datasets":[
-				{
-					"name" : "Parking des espaces naturels sensibles",
-					"id" : "i3ikh612",
-					"area":{
-						"color":"orange"
-					}
-				},
-				{
-					"name" : "Zone de préemption des espaces naturels",
-					"id" : "i2lk7v0b",
-					"area":{
-						"color":"orange"
-					}
-				}
-			]
-		},
-		{
 			"name":"Enseignement",
 			"datasets":[
 				{
@@ -209,11 +190,27 @@
 			"datasets":[
 				{
 					"name" : "Nombre de bénéficiaires de l'aide compensatrice tierce personne dans les Côtes d'Armor",
-					"id" : "MONTANT_ACTP"
+					"id" : "MONTANT_ACTP",
+					"insee":"CODEINSEE",
+					"inseeColor":{
+						"field":"MONTANTACTP",
+						"divideByPop":true
+					},
+					"slider":{
+						"field":"ANNEE",
+						"min":"2005",
+						"max":"2013",
+						"value":"2005"
+					}
 				},
 				{
 					"name" : "Nombre de places agrées par type d'accueil familial et par commune des Côtes d'Armor de 2010 à 2013",
-					"id" : "ACCUEIL_FAMILIAL_AGREMENT"
+					"id" : "ACCUEIL_FAMILIAL_AGREMENT",
+					"insee":"CODINSEE",
+					"inseeColor":{
+						"field":"NBPLACES",
+						"divideByPop":true
+					}
 				},
 				{
 					"name" : "Services des aides à domicile 22",
@@ -262,6 +259,25 @@
 				{
 					"name" : "Points d'arrêts des lignes départementales de transport scolaire dans les Côtes d'Armor",
 					"id" : "PEGASE_ARRET"
+				},
+		{
+			"name":"Nature",
+			"datasets":[
+				{
+					"name" : "Parking des espaces naturels sensibles",
+					"id" : "i3ikh612",
+					"area":{
+						"color":"orange"
+					}
+				},
+				{
+					"name" : "Zone de préemption des espaces naturels",
+					"id" : "i2lk7v0b",
+					"area":{
+						"color":"orange"
+					}
 				}
+			]
+		}
 	]
 }]

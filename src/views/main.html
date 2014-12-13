@@ -1,31 +1,43 @@
+ <div class="spinner" ng-show="isSomethingLoading"></div>
  <div layout="row">
  <div layout="column" flex="25">
  <div layout="column" ng-repeat="site in sites">
- 	<md-toolbar>
-    <h1 class="md-toolbar-tools">
-      <span>{{site.name}}</span>
-    </h1>
-  </md-toolbar>
    <div  layout="column" ng-repeat="category in site.categories">
  	<md-toolbar>
-    <h2 class="md-toolbar-tools">
-      <span>{{category.name}}</span>
-    </h2>
+      <span class="md-toolbar-tools">{{category.name}}</span>
   </md-toolbar>
   <md-content layout="column" >
-
-    <md-button ng-repeat="dataset in category.datasets" ng-click="getData(site.url+dataset.id,dataset);">
+  <small ng-repeat="dataset in category.datasets">
+    <md-button ng-click="getData(site.url+dataset.id,dataset,site.name);">
 {{dataset.name}}
     </md-button>
-      
+   </small>
   </md-content>
  </div>
  </div>
  </div>
 <div flex="75">
+<h2>{{presentation.name}}</h2>
 <map-emeraude data="data" presentation="presentation">
 
 </map-emeraude>
+<div ng-if="presentation.slider">
+	<div ng-if="presentation.slider">Année {{presentation.slider.value}}</div>
+
+	 <md-slider md-discrete ng-model="presentation.slider.value" step="1" min="{{presentation.slider.min}}" max="{{presentation.slider.max}}" aria-label="rating">
+    </md-slider>
+</div>
+<div ng-if="site">Les données proviennent du site {{site}}</div>
+
+<md-toolbar layout="row">
+      <span class="md-toolbar-tools" ng-repeat="(k,d) in data[0]" ng-if="k!='__metadata'" style="font-size:10px">{{k}}</span>
+  </md-toolbar>
+ <div layout="column">
+ 	<div ng-repeat="dat in data" layout="row">
+ 		<div ng-repeat="(k,d) in dat" ng-if="k!='__metadata'" style="font-size:10px">{{d}}</div>
+ 	</div>
+ </div>
+
 </div>
  </div>
   

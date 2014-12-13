@@ -4,8 +4,16 @@ var concat = require('gulp-concat');
 var es = require('event-stream');
 var connect = require('gulp-connect');
 var usemin = require('gulp-usemin');
+var clean = require('gulp-clean');
 
-gulp.task('build', [], function() {
+gulp.task('clean', function() {
+	return gulp.src(['./src/breizh-emeraude.js'], {
+			read: false
+		})
+		.pipe(clean());
+});
+
+gulp.task('build', ['clean'], function() {
 	return es.merge(
 			gulp.src('src/**/*.js'),
 			gulp.src('src/**/*.html')

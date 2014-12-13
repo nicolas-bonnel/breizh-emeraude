@@ -16,6 +16,9 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
    			var communes = {};
    			var projection, path;
    			var areas;
+   			var inseeColor = {};
+   			var jsonCommunes;
+   			var jsonFeat;
             //Create SVG element
             var svg = d3.select("#mapEmerald")
                         .append("svg")
@@ -28,17 +31,38 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 				.style("visibility", 'hidden');
 
    			scope.$watch('data',function(newVal){
-   				console.log(scope.presentation);
-   				console.log(newVal);
    				if(scope.presentation){
    					var point = scope.presentation.point;
+   					svg.selectAll("circle").remove();
+   					if(scope.presentation.inseeColor){
+   						var max=0, min = 1e10;
+   						newVal.filter(function(c){
+							return communes[c[scope.presentation.insee]];
+						}).forEach(function(v){
+							var val = parseFloat(v[scope.presentation.inseeColor.field]);
+							if(scope.presentation.inseeColor.field.divideByPop)
+								val = val / parseFloat(communes[c[scope.presentation.insee]].Population);
+							communes[v[scope.presentation.insee]].data = val	
+							max = Math.max(max,val)
+							min = Math.min(min,val)
+						});
+						jsonFeat.forEach(function(v){
+							v.data = (communes[v.properties['CODE INSEE']].data-min)/(max-min);
+						});
+						jsonCommunes.transition().duration(1000).style("fill", function(d){
+							if(!d.data)
+								 return d3.hsl(120, 0.0, 0.7);
+							else
+                   				return d3.hsl(120, 0.4, parseFloat(d.data)); 
+                   		});
+   					}
+   					// does not work for the moment
    					if(scope.presentation.area){
    						if(areas) areas.remove();
    						newVal.forEach(function(v){
    							v.geometry = JSON.parse(v.geometry);
    							v.type = "Feature";
    						}); 
-   						console.log(newVal);
    						areas =  svg.selectAll("pathareas")
 		                   .data(newVal)
 		                   .enter()
@@ -66,9 +90,7 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 		   							});
 	   							
 	   						}
-	   					});
-	   					console.log(points);
-	   					svg.selectAll("circle").remove();
+	   					});	   					
 	   				var p = svg.selectAll("points")
 		                   .data(points)
 		                   .enter()
@@ -115,6 +137,7 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
             	json.features.forEach(function(c){
             		communes[c.properties['CODE INSEE']] = c
             	});
+            	jsonFeat = json.features;
             	 var center = d3.geo.centroid(json)
             	          //Define map projection
              projection= d3.geo.mercator()
@@ -126,17 +149,33 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
               path = d3.geo.path()
                              .projection(projection);
                 //Bind data and create one path per GeoJSON feature
-                svg.selectAll("path")
-                   .data(json.features)
-                   .enter()
-                   .append("path")
-                   .attr("d", path)
-                   .attr("title",function(d){
-                   		return d.properties['Nom de la commune'];
-                   })
-                   .style("fill", function(d){
-                   		return d3.hsl(120, 0.4, 0.7-parseFloat(d.properties['Densité'])/500);
-                   });
+
+                 d3.json("data/bretagne.geojson", function(jsonBzh) {
+                	 d3.json("data/dpt50.geojson", function(json50) {
+                 		 svg.selectAll("path35")
+		                   .data([jsonBzh,json50])
+		                   .enter()
+		                   .append("path")
+		                   .attr("d", path)
+		                   .style('opacity','0.2')
+		                   .style("stroke-width", "2px")
+		                   .style("stroke", "black");
+
+
+		                jsonCommunes = svg.selectAll("path")
+		                   .data(json.features)
+		                   .enter()
+		                   .append("path")
+		                   .attr("d", path)
+		                   .attr("title",function(d){
+		                   		return d.properties['Nom de la commune'];
+		                   })
+		                   .style("fill", function(d){
+		                   		return d3.hsl(120, 0.4, 0.7-parseFloat(d.properties['Densité'])/500);
+		                   });
+
+ 					});
+                });
 
             });
 
