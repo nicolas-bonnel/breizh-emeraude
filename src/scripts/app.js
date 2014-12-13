@@ -10,8 +10,8 @@ app.config(function($routeProvider, $httpProvider) {
 		.when('/', {
 			controller: 'mainController',
 			templateUrl: 'views/main.html'
-		}).when('/demarche', {
-			templateUrl: 'views/demarche.html'
+		}).when('/projet', {
+			templateUrl: 'views/projet.html'
 		})
 		.otherwise({
 			redirectTo: '/'

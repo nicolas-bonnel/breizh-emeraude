@@ -356,19 +356,19 @@ app.config(function($routeProvider, $httpProvider) {
 		.when('/', {
 			controller: 'mainController',
 			templateUrl: 'views/main.html'
-		}).when('/demarche', {
-			templateUrl: 'views/demarche.html'
+		}).when('/projet', {
+			templateUrl: 'views/projet.html'
 		})
 		.otherwise({
 			redirectTo: '/'
 		});
 });
-angular.module("breizh-emeraude").run(["$templateCache", function($templateCache) {$templateCache.put("index.html","<html>\n<head>\n<title>Breizh Emeraude</title>\n<meta name=\"viewport\" content=\"initial-scale=1, maximum-scale=1, user-scalable=no\" />\n<style>canvas { width: 100%; height: 100% }</style>\n<!-- build:css main.css -->\n<link rel=\"stylesheet\" href=\"../bower_components/angular-material/angular-material.min.css\" type=\"text/css\"/>\n<link rel=\"stylesheet\" href=\"../bower_components/angular-material/themes/grey-theme.css\">\n<link rel=\"stylesheet\" href=\"../bower_components/angular-loading-bar/build/loading-bar.min.css\">\n<link rel=\"stylesheet\" href=\"main.css\">\n<!-- endbuild -->\n</head>\n<body>\n<div ng-app=\"breizh-emeraude\" md-theme=\"grey\">\n<div ng-view=\"main\"></div>\n</div>\n<!-- build:js breizh-emeraude.js -->\n<script src=\"../bower_components/jquery/dist/jquery.min.js\"></script>\n<script src=\"../bower_components/angular/angular.min.js\"></script>\n<script src=\"../bower_components/angular-aria/angular-aria.min.js\"></script>\n<script src=\"../bower_components/angular-animate/angular-animate.min.js\"></script>\n<script src=\"../bower_components/hammerjs/hammer.min.js\"></script>\n<script src=\"../bower_components/angular-material/angular-material.min.js\"></script>\n<script src=\"../bower_components/angular-route/angular-route.min.js\"></script>\n<script src=\"../bower_components/angular-loading-bar/build/loading-bar.min.js\"></script>\n<script src=\"../bower_components/d3/d3.min.js\"></script>\n<script src=\"breizh-emeraude.js\"></script>\n<!-- endbuild -->\n</body>\n</html>");
-$templateCache.put("views/main.html"," <div class=\"spinner\" ng-show=\"isSomethingLoading\"></div>\n <div layout=\"row\">\n <div layout=\"column\" flex=\"25\">\n <div layout=\"column\" ng-repeat=\"site in sites\">\n   <div  layout=\"column\" ng-repeat=\"category in site.categories\">\n 	<md-toolbar>\n      <span class=\"md-toolbar-tools\">{{category.name}}</span>\n  </md-toolbar>\n  <md-content layout=\"column\" >\n  <small ng-repeat=\"dataset in category.datasets\">\n    <md-button ng-click=\"getData(site.url+dataset.id,dataset,site.name);\">\n{{dataset.name}}\n    </md-button>\n   </small>\n  </md-content>\n </div>\n </div>\n </div>\n<div flex=\"75\">\n<h2>{{presentation.name}}</h2>\n<map-emeraude data=\"data\" presentation=\"presentation\">\n\n</map-emeraude>\n<div ng-if=\"presentation.slider\">\n	<div ng-if=\"presentation.slider\">Année {{presentation.slider.value}}</div>\n\n	 <md-slider md-discrete ng-model=\"presentation.slider.value\" step=\"1\" min=\"{{presentation.slider.min}}\" max=\"{{presentation.slider.max}}\" aria-label=\"rating\">\n    </md-slider>\n</div>\n<div ng-if=\"site\">Les données proviennent du site {{site}}</div>\n\n<md-toolbar layout=\"row\">\n      <span class=\"md-toolbar-tools\" ng-repeat=\"(k,d) in data[0]\" ng-if=\"k!=\'__metadata\'\" style=\"font-size:10px\">{{k}}</span>\n  </md-toolbar>\n <div layout=\"column\">\n 	<div ng-repeat=\"dat in data\" layout=\"row\">\n 		<div ng-repeat=\"(k,d) in dat\" ng-if=\"k!=\'__metadata\'\" style=\"font-size:10px\">{{d}}</div>\n 	</div>\n </div>\n\n</div>\n </div>\n  \n");}]);
 angular.module('breizh-emeraude').controller('mainController',function($scope, $http){
 	$http.get('data/datasets.json').then(function(results){
 		$scope.sites = results.data;
 	});
+
+	$scope.filteredData = {};
 
 	$scope.getData = function(url,presentation,site){
 		$scope.site = site;
@@ -376,7 +376,6 @@ angular.module('breizh-emeraude').controller('mainController',function($scope, $
 		$scope.presentation = presentation;
 		var tUrl = '';
 		if(presentation.slider){
-			console.log(presentation.slider);
 			tUrl = '&$filter='+presentation.slider.field+' eq \''+presentation.slider.value+'\''
 		}
 		$http.get(url+'?$top=500'+(presentation.tailUrl?presentation.tailUrl:'')+tUrl).then(function(results){
@@ -390,6 +389,9 @@ angular.module('breizh-emeraude').controller('mainController',function($scope, $
 		$scope.getData($scope.currentUrl,$scope.presentation,$scope.site);
 	});
 });
+angular.module("breizh-emeraude").run(["$templateCache", function($templateCache) {$templateCache.put("index.html","<html>\n<head>\n<title>Breizh Emeraude</title>\n<meta name=\"viewport\" content=\"initial-scale=1, maximum-scale=1, user-scalable=no\" />\n<style>canvas { width: 100%; height: 100% }</style>\n<!-- build:css main.css -->\n<link rel=\"stylesheet\" href=\"../bower_components/angular-material/angular-material.min.css\" type=\"text/css\"/>\n<link rel=\"stylesheet\" href=\"../bower_components/angular-material/themes/orange-theme.css\">\n<link rel=\"stylesheet\" href=\"../bower_components/angular-material/themes/grey-theme.css\">\n<link rel=\"stylesheet\" href=\"../bower_components/angular-loading-bar/build/loading-bar.min.css\">\n<link rel=\"stylesheet\" href=\"main.css\">\n<!-- endbuild -->\n</head>\n<body>\n<div ng-app=\"breizh-emeraude\" md-theme=\"grey\">\n<div ng-view=\"main\"></div>\n</div>\n<!-- build:js breizh-emeraude.js -->\n<script src=\"../bower_components/jquery/dist/jquery.min.js\"></script>\n<script src=\"../bower_components/angular/angular.min.js\"></script>\n<script src=\"../bower_components/angular-aria/angular-aria.min.js\"></script>\n<script src=\"../bower_components/angular-animate/angular-animate.min.js\"></script>\n<script src=\"../bower_components/hammerjs/hammer.min.js\"></script>\n<script src=\"../bower_components/angular-material/angular-material.min.js\"></script>\n<script src=\"../bower_components/angular-route/angular-route.min.js\"></script>\n<script src=\"../bower_components/angular-loading-bar/build/loading-bar.min.js\"></script>\n<script src=\"../bower_components/d3/d3.min.js\"></script>\n<script src=\"breizh-emeraude.js\"></script>\n<!-- endbuild -->\n</body>\n</html>");
+$templateCache.put("views/main.html"," <div class=\"spinner\" ng-show=\"isSomethingLoading\"></div>\n <md-toolbar md-theme=\"orange\" class=\"md-medium-tall\">\n      <h1 class=\"md-toolbar-tools md-toolbar-tools-top\" style=\"font-size:32px;color:white;text-transform: uppercase\">Breizh Data Emeraude</h1>\n      <a href=\"#/projet\" layout-align=\"end\" class=\"md-toolbar-tools md-toolbar-tools-bottom\" style=\"font-size:24;color:white\">Le projet</a>\n  </md-toolbar>\n <div layout=\"row\">\n <div layout=\"column\" flex=\"25\">\n <div layout=\"column\" ng-repeat=\"site in sites\">\n   <div  layout=\"column\" ng-repeat=\"category in site.categories\">\n 	<md-toolbar>\n      <span class=\"md-toolbar-tools\">{{category.name}}</span>\n  </md-toolbar>\n  <md-content layout=\"column\">\n  <small ng-repeat=\"dataset in category.datasets\">\n    <md-button ng-click=\"getData(site.url+dataset.id,dataset,site.name);\">\n{{dataset.name}}\n    </md-button>\n   </small>\n  </md-content>\n </div>\n </div>\n </div>\n<md-content flex=\"75\" class=\"md-padding\">\n<h2>{{presentation.name}}</h2>\n<map-emeraude data=\"data\" presentation=\"presentation\" filtered-data=\"filteredData\">\n\n</map-emeraude>\n<div ng-if=\"presentation.slider\">\n	<div ng-if=\"presentation.slider\">Année {{presentation.slider.value}}</div>\n\n	 <md-slider md-discrete ng-model=\"presentation.slider.value\" step=\"1\" min=\"{{presentation.slider.min}}\" max=\"{{presentation.slider.max}}\" aria-label=\"rating\">\n    </md-slider>\n</div>\n<div ng-if=\"site\">Les données proviennent du site {{site}}</div>\n<md-toolbar layout=\"row\">\n      <span class=\"md-toolbar-tools\" ng-repeat=\"(k,d) in filteredData[0]\" ng-if=\"k!=\'__metadata\'\" style=\"font-size:10px\" flex>{{k}}</span>\n  </md-toolbar>\n <div layout=\"column\">\n 	<div ng-repeat=\"dat in filteredData\" layout=\"row\">\n 		<div ng-repeat=\"(k,d) in dat\" ng-if=\"k!=\'__metadata\'\" style=\"font-size:10px\" flex>{{d}}</div>\n 	</div>\n </div>\n\n</md-content>\n </div>\n  <md-toolbar class=\"md-medium-tall\">\n      <span class=\"md-toolbar-tools md-toolbar-tools-top\" >Data Emeraude</span>\n  </md-toolbar>\n  \n");
+$templateCache.put("views/projet.html"," <div class=\"spinner\" ng-show=\"isSomethingLoading\"></div>\n <md-toolbar md-theme=\"orange\" class=\"md-medium-tall\">\n      <h1 class=\"md-toolbar-tools md-toolbar-tools-top\" style=\"font-size:32px;color:white;text-transform: uppercase\">Le projet</h1>\n      <a href=\"#/\" layout-align=\"end\" class=\"md-toolbar-tools md-toolbar-tools-bottom\" style=\"font-size:24;color:white\">Breizh Data Emeraude</a>\n  </md-toolbar>\n\n  <md-toolbar class=\"md-medium-tall\">\n      <span class=\"md-toolbar-tools md-toolbar-tools-top\" >Data Emeraude</span>\n  </md-toolbar>\n  \n");}]);
 angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 	return {
 		restrict: 'E',
@@ -398,7 +400,8 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 		template: '<div id="mapEmerald"></div>',
 		scope: {
 			data:'=',
-			presentation:'='
+			presentation:'=',
+			filteredData:'='
 		},
 		link: function(scope, element) {
 			 //Width and height
@@ -437,6 +440,9 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 							communes[v[scope.presentation.insee]].data = val	
 							max = Math.max(max,val)
 							min = Math.min(min,val)
+						});
+						scope.filteredData = newVal.filter(function(c){
+							return communes[c[scope.presentation.insee]];
 						});
 						jsonFeat.forEach(function(v){
 							v.data = (communes[v.properties['CODE INSEE']].data-min)/(max-min);
@@ -482,7 +488,10 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 		   							});
 	   							
 	   						}
-	   					});	   					
+	   					});	 
+	   					scope.filteredData = newVal.filter(function(c){
+							return communes[c[scope.presentation.insee]];
+						});
 	   				var p = svg.selectAll("points")
 		                   .data(points)
 		                   .enter()

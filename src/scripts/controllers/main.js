@@ -3,13 +3,14 @@ angular.module('breizh-emeraude').controller('mainController',function($scope, $
 		$scope.sites = results.data;
 	});
 
+	$scope.filteredData = {};
+
 	$scope.getData = function(url,presentation,site){
 		$scope.site = site;
 		$scope.currentUrl = url;
 		$scope.presentation = presentation;
 		var tUrl = '';
 		if(presentation.slider){
-			console.log(presentation.slider);
 			tUrl = '&$filter='+presentation.slider.field+' eq \''+presentation.slider.value+'\''
 		}
 		$http.get(url+'?$top=500'+(presentation.tailUrl?presentation.tailUrl:'')+tUrl).then(function(results){

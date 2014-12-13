@@ -6,7 +6,8 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 		template: '<div id="mapEmerald"></div>',
 		scope: {
 			data:'=',
-			presentation:'='
+			presentation:'=',
+			filteredData:'='
 		},
 		link: function(scope, element) {
 			 //Width and height
@@ -45,6 +46,9 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 							communes[v[scope.presentation.insee]].data = val	
 							max = Math.max(max,val)
 							min = Math.min(min,val)
+						});
+						scope.filteredData = newVal.filter(function(c){
+							return communes[c[scope.presentation.insee]];
 						});
 						jsonFeat.forEach(function(v){
 							v.data = (communes[v.properties['CODE INSEE']].data-min)/(max-min);
@@ -90,7 +94,10 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 		   							});
 	   							
 	   						}
-	   					});	   					
+	   					});	 
+	   					scope.filteredData = newVal.filter(function(c){
+							return communes[c[scope.presentation.insee]];
+						});
 	   				var p = svg.selectAll("points")
 		                   .data(points)
 		                   .enter()

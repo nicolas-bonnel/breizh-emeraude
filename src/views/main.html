@@ -1,4 +1,8 @@
  <div class="spinner" ng-show="isSomethingLoading"></div>
+ <md-toolbar md-theme="orange" class="md-medium-tall">
+      <h1 class="md-toolbar-tools md-toolbar-tools-top" style="font-size:32px;color:white;text-transform: uppercase">Breizh Data Emeraude</h1>
+      <a href="#/projet" layout-align="end" class="md-toolbar-tools md-toolbar-tools-bottom" style="font-size:24;color:white">Le projet</a>
+  </md-toolbar>
  <div layout="row">
  <div layout="column" flex="25">
  <div layout="column" ng-repeat="site in sites">
@@ -6,7 +10,7 @@
  	<md-toolbar>
       <span class="md-toolbar-tools">{{category.name}}</span>
   </md-toolbar>
-  <md-content layout="column" >
+  <md-content layout="column">
   <small ng-repeat="dataset in category.datasets">
     <md-button ng-click="getData(site.url+dataset.id,dataset,site.name);">
 {{dataset.name}}
@@ -16,9 +20,9 @@
  </div>
  </div>
  </div>
-<div flex="75">
+<md-content flex="75" class="md-padding">
 <h2>{{presentation.name}}</h2>
-<map-emeraude data="data" presentation="presentation">
+<map-emeraude data="data" presentation="presentation" filtered-data="filteredData">
 
 </map-emeraude>
 <div ng-if="presentation.slider">
@@ -28,16 +32,18 @@
     </md-slider>
 </div>
 <div ng-if="site">Les données proviennent du site {{site}}</div>
-
 <md-toolbar layout="row">
-      <span class="md-toolbar-tools" ng-repeat="(k,d) in data[0]" ng-if="k!='__metadata'" style="font-size:10px">{{k}}</span>
+      <span class="md-toolbar-tools" ng-repeat="(k,d) in filteredData[0]" ng-if="k!='__metadata'" style="font-size:10px" flex>{{k}}</span>
   </md-toolbar>
  <div layout="column">
- 	<div ng-repeat="dat in data" layout="row">
- 		<div ng-repeat="(k,d) in dat" ng-if="k!='__metadata'" style="font-size:10px">{{d}}</div>
+ 	<div ng-repeat="dat in filteredData" layout="row">
+ 		<div ng-repeat="(k,d) in dat" ng-if="k!='__metadata'" style="font-size:10px" flex>{{d}}</div>
  	</div>
  </div>
 
-</div>
+</md-content>
  </div>
+  <md-toolbar class="md-medium-tall">
+      <span class="md-toolbar-tools md-toolbar-tools-top" >Data Emeraude</span>
+  </md-toolbar>
   

@@ -173,7 +173,7 @@
 			"name":"Enseignement",
 			"datasets":[
 				{
-					"name" : "Etablissements accueillant les enfants",
+					"name" : "Etablissements accueil enfants",
 					"id" : "ETAB_ENFANCE",
 					"insee":"CODINSEE",
 					"point":{
