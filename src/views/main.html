@@ -1,0 +1,29 @@
+ <div layout="row">
+ <div layout="column" ng-repeat="site in sites" flex="25">
+ 	<md-toolbar>
+    <h1 class="md-toolbar-tools">
+      <span>{{site.name}}</span>
+    </h1>
+  </md-toolbar>
+   <div  layout="column" ng-repeat="category in site.categories">
+ 	<md-toolbar>
+    <h2 class="md-toolbar-tools">
+      <span>{{category.name}}</span>
+    </h2>
+  </md-toolbar>
+  <md-content layout="column" >
+
+    <md-button ng-repeat="dataset in category.datasets" ng-click="getData(site.url+dataset.id,dataset);">
+{{dataset.name}}
+    </md-button>
+      
+  </md-content>
+ </div>
+ </div>
+<div flex="75">
+<map-emeraude data="data" presentation="presentation">
+
+</map-emeraude>
+</div>
+ </div>
+  

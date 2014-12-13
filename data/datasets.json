@@ -1,0 +1,157 @@
+[{
+	"name" : "Datarmor",
+	"url":"https://www2.mgcloud.fr/dataserver/cg22/data/",
+	"categories":[
+		{
+			"name":"Transport",
+			"datasets":[
+				{
+					"name" : "Aires de covoiturage",
+					"id" : "i38o9pe9",
+					"insee":"CODINSEE",
+					"tailUrl":"&$filter=LONGITUDE ge '-2.5'",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE",
+						"radius":"NOMBREPLACES"
+					}
+				},
+				{
+					"name" : "Ports",
+					"id" : "hyrcasvk",
+					"insee":"CODINSEE",
+					"tailUrl":"&$filter=LONGITUDE ge '-2.5'",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE"
+					}
+				}
+			]
+		},
+		{
+			"name":"Culture & sport",
+			"datasets":[
+				{
+					"name" : "Animations",
+					"id" : "AGENDA",
+					"insee":"INSEE",
+					"tailUrl":"&$filter=LONGITUDE le '-2.5'",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE"
+					}
+				},
+				{
+					"name" : "Bibliothèque",
+					"id" : "hyrdj7gx",
+					"insee":"CODINSEECOM",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE"
+					}
+				},
+				{
+					"name" : "Equipements sportifs",
+					"id" : "hya7y433"
+				}
+			]
+		},
+		{
+			"name":"Tourisme",
+			"datasets":[
+				{
+					"name" : "Campings",
+					"id" : "CAMPINGS"
+				},
+				{
+					"name" : "Plages du 22",
+					"id" : "PLAGES"
+				},
+				{
+					"name" : "Tarifs des ports départementaux",
+					"id" : "hyrcasvk"
+				}
+			]
+		},
+		{
+			"name":"Politique et administration",
+			"datasets":[
+				{
+					"name" : "Conseillers généraux Pas de RG",
+					"id" : "CONSEILLERS_CG22"
+				},
+				{
+					"name" : "Maires",
+					"id" : "LISTE_MAIRES"
+				},
+				{
+					"name" : "Présidents d’EPCI",
+					"id" : "i0nlj7jw"
+				},
+				{
+					"name" : "Sites du CG22",
+					"id" : "i2w0vkdm"
+				}
+			]
+		},
+		{
+			"name":"Nature",
+			"datasets":[
+				{
+					"name" : "Parking des espaces naturels sensibles",
+					"id" : "i3ikh612"
+				},
+				{
+					"name" : "Zone de préemption des espaces naturels",
+					"id" : "i2lk7v0b"
+				}
+			]
+		},
+		{
+			"name":"Enseignement",
+			"datasets":[
+				{
+					"name" : "Etablissements accueillant les enfants",
+					"id" : "ETAB_ENFANCE"
+				},
+				{
+					"name" : "Sectorisation des collèges publics",
+					"id" : "i30abnkm"
+				},
+				{
+					"name" : "Etablissements scolaires déservis par les transports scolaires",
+					"id" : "PEGASE_ETABLISSEMENT"
+				},
+				{
+					"name" : "Points d'arrêts des lignes départementales de transport scolaire dans les Côtes d'Armor",
+					"id" : "PEGASE_ARRET"
+				}
+			]
+		},
+		{
+			"name":"Social",
+			"datasets":[
+				{
+					"name" : "Nombre de bénéficiaires de l'aide compensatrice tierce personne dans les Côtes d'Armor",
+					"id" : "MONTANT_ACTP"
+				},
+				{
+					"name" : "Nombre de places agrées par type d'accueil familial et par commune des Côtes d'Armor de 2010 à 2013",
+					"id" : "ACCUEIL_FAMILIAL_AGREMENT"
+				},
+				{
+					"name" : "Services des aides à domicile 22",
+					"id" : "SAAD"
+				},
+				{
+					"name" : "Nbre d’assistants maternels par communes",
+					"id" : "ASSMAT"
+				}
+			]
+		}
+	]
+}]
