@@ -1,5 +1,6 @@
  <div layout="row">
- <div layout="column" ng-repeat="site in sites" flex="25">
+ <div layout="column" flex="25">
+ <div layout="column" ng-repeat="site in sites">
  	<md-toolbar>
     <h1 class="md-toolbar-tools">
       <span>{{site.name}}</span>
@@ -18,6 +19,7 @@
     </md-button>
       
   </md-content>
+ </div>
  </div>
  </div>
 <div flex="75">

@@ -14,7 +14,8 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
             var h = 500;
 
    			var communes = {};
-   			var projection;
+   			var projection, path;
+   			var areas;
             //Create SVG element
             var svg = d3.select("#mapEmerald")
                         .append("svg")
@@ -31,6 +32,22 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
    				console.log(newVal);
    				if(scope.presentation){
    					var point = scope.presentation.point;
+   					if(scope.presentation.area){
+   						if(areas) areas.remove();
+   						newVal.forEach(function(v){
+   							v.geometry = JSON.parse(v.geometry);
+   							v.type = "Feature";
+   						}); 
+   						console.log(newVal);
+   						areas =  svg.selectAll("pathareas")
+		                   .data(newVal)
+		                   .enter()
+		                   .append("path")
+		                   .attr("d", path)		       
+		                   .style("fill", function(d){
+		                   		return "blue";
+		                   });
+   					}
    					if(point){
    					   	var points = [];
 						newVal.filter(function(c){
@@ -63,13 +80,22 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 		                   		return d.data;
 		                   })
 		                   .style("stroke","black")
-		                   .style("fill", "pink");
+		                   .style("fill", function(d){
+		                   	if(!scope.presentation.color) return "orange";
+		                   	else{
+		                   		return scope.presentation.color[d.data[scope.presentation.color.field].toLowerCase()];
+		                   	}
+		                   });
 		                p.on("mouseenter", function(obj) {
 		                	var data = obj.data;
 		                	var st = '';
 		                	for(var d in data){
-		                		if(d != '__metadata')
-		                			st = st + (st ? '<br/>' : '') +d +' : '+data[d];
+		                		if(d != '__metadata'){
+		                			if(scope.presentation.fields && scope.presentation.fields[d] && scope.presentation.fields[d] == 'img')
+		                				st = st + (st ? '<br/>' : '') + '<img width="100px" src="'+data[d]+'"/>';
+		                			else
+		                				st = st + (st ? '<br/>' : '') +d +' : '+data[d];
+		                		}
 		                	}			
 							tooltip	.html(st)	 
 								.style("visibility", 'visible')
@@ -97,7 +123,7 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
                                    .center(center);
 
             //Define path generator
-            var path = d3.geo.path()
+              path = d3.geo.path()
                              .projection(projection);
                 //Bind data and create one path per GeoJSON feature
                 svg.selectAll("path")

@@ -1,4 +1,81 @@
 [{
+	"name" : "Tourisme Bretagne",
+	"url":"https://www2.mgcloud.fr/dataserver/tourismebretagne/data/",
+	"categories":[
+		{
+			"name":"Tourisme",
+			"datasets":[
+				{
+					"name" : "Campings",
+					"id" : "campingsBREfr",
+					"tailUrl":"&$filter=LONGITUDE le '-2.5'",
+					"insee":"INSEE",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE"
+					},
+					"fields":{
+						"PHOTOS":"img"
+					}
+				},
+				{
+					"name" : "Plages",
+					"id" : "plagesBREfr",
+					"tailUrl":"&$filter=LONGITUDE le '-2.5'",
+					"insee":"INSEE",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE"
+					},
+					"fields":{
+						"PHOTOS":"img"
+					}
+				},
+				{
+					"name" : "Hotels",
+					"id" : "hotelsBREfr",
+					"tailUrl":"&$filter=LONGITUDE le '-2.5'",
+					"insee":"INSEE",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE"
+					},
+					"fields":{
+						"PHOTOS":"img"
+					}
+				},
+				{
+					"name" : "Équipements sportifs",
+					"id" : "equipementbzh",
+					"tailUrl":"&$filter=LONGITUDE le '-2.5'",
+					"insee":"CODINSEECOM",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE",
+						"radius":"SPORT"
+					}
+				},
+				{
+					"name" : "Evenements",
+					"id" : "agendaBREfr",
+					"tailUrl":"&$filter=LONGITUDE le '-2.5' and LONGITUDE ge '-1.5' and LATITUDE ge '48.2'",
+					"insee":"INSEE",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE"
+					},
+					"fields":{
+						"PHOTOS":"img"
+					}
+				}
+			]
+		}]
+	},{
 	"name" : "Datarmor",
 	"url":"https://www2.mgcloud.fr/dataserver/cg22/data/",
 	"categories":[
@@ -53,48 +130,42 @@
 						"lat":"LATITUDE",
 						"lon":"LONGITUDE"
 					}
-				},
-				{
-					"name" : "Equipements sportifs",
-					"id" : "hya7y433"
-				}
-			]
-		},
-		{
-			"name":"Tourisme",
-			"datasets":[
-				{
-					"name" : "Campings",
-					"id" : "CAMPINGS"
-				},
-				{
-					"name" : "Plages du 22",
-					"id" : "PLAGES"
-				},
-				{
-					"name" : "Tarifs des ports départementaux",
-					"id" : "hyrcasvk"
 				}
 			]
 		},
 		{
 			"name":"Politique et administration",
 			"datasets":[
-				{
-					"name" : "Conseillers généraux Pas de RG",
-					"id" : "CONSEILLERS_CG22"
-				},
+				
 				{
 					"name" : "Maires",
-					"id" : "LISTE_MAIRES"
+					"id" : "LISTE_MAIRES",
+					"insee":"CODINSEECOM",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE"
+					},
+					"color":{
+						"field":"CIVILITE",
+						"madame":"pink",
+						"monsieur":"blue"
+					}
 				},
 				{
 					"name" : "Présidents d’EPCI",
-					"id" : "i0nlj7jw"
-				},
-				{
-					"name" : "Sites du CG22",
-					"id" : "i2w0vkdm"
+					"id" : "i0nlj7jw",
+					"insee":"CODINSEECOM",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE"
+					},
+					"color":{
+						"field":"CIVILITE",
+						"madame":"pink",
+						"monsieur":"blue"
+					}
 				}
 			]
 		},
@@ -103,11 +174,17 @@
 			"datasets":[
 				{
 					"name" : "Parking des espaces naturels sensibles",
-					"id" : "i3ikh612"
+					"id" : "i3ikh612",
+					"area":{
+						"color":"orange"
+					}
 				},
 				{
 					"name" : "Zone de préemption des espaces naturels",
-					"id" : "i2lk7v0b"
+					"id" : "i2lk7v0b",
+					"area":{
+						"color":"orange"
+					}
 				}
 			]
 		},
@@ -116,19 +193,14 @@
 			"datasets":[
 				{
 					"name" : "Etablissements accueillant les enfants",
-					"id" : "ETAB_ENFANCE"
-				},
-				{
-					"name" : "Sectorisation des collèges publics",
-					"id" : "i30abnkm"
-				},
-				{
-					"name" : "Etablissements scolaires déservis par les transports scolaires",
-					"id" : "PEGASE_ETABLISSEMENT"
-				},
-				{
-					"name" : "Points d'arrêts des lignes départementales de transport scolaire dans les Côtes d'Armor",
-					"id" : "PEGASE_ARRET"
+					"id" : "ETAB_ENFANCE",
+					"insee":"CODINSEE",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE",
+						"radius":"NBPLACESBUDGETEES"
+					}
 				}
 			]
 		},
@@ -145,13 +217,51 @@
 				},
 				{
 					"name" : "Services des aides à domicile 22",
-					"id" : "SAAD"
+					"id" : "SAAD",
+					"insee":"CODINSEE",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE"
+					}
 				},
 				{
 					"name" : "Nbre d’assistants maternels par communes",
-					"id" : "ASSMAT"
+					"id" : "ASSMAT",
+					"insee":"CODINSEE",
+					"point":{
+						"type":"2fields",
+						"lat":"LATITUDE",
+						"lon":"LONGITUDE",
+						"radius":"CAPACCUEIL"
+					}
 				}
 			]
 		}
+	],
+	"unused":[
+				{
+					"name" : "Conseillers généraux Pas de RG",
+					"id" : "CONSEILLERS_CG22"
+				},{
+					"name" : "Equipements sportifs",
+					"id" : "hya7y433"
+				},
+				{
+					"name" : "Sites du CG22",
+					"id" : "i2w0vkdm"
+				},
+				{
+					"name" : "Sectorisation des collèges publics",
+					"id" : "i30abnkm"
+				},
+				{
+					"name" : "Etablissements scolaires déservis par les transports scolaires",
+					"id" : "PEGASE_ETABLISSEMENT"
+				},
+				{
+					"name" : "Points d'arrêts des lignes départementales de transport scolaire dans les Côtes d'Armor",
+					"id" : "PEGASE_ARRET"
+				}
 	]
 }]
