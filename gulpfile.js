@@ -3,6 +3,7 @@ var templateCache = require('gulp-angular-templatecache');
 var concat = require('gulp-concat');
 var es = require('event-stream');
 var connect = require('gulp-connect');
+var usemin = require('gulp-usemin');
 
 gulp.task('build', [], function() {
 	return es.merge(
@@ -14,18 +15,27 @@ gulp.task('build', [], function() {
 				standalone: false
 			}))
 		)
-		.pipe(concat('breizh-emeraude.js'))
+		.pipe(concat('src/breizh-emeraude.js'))
 		.pipe(gulp.dest('.'));
 });
 
-gulp.task('default', ['build', 'watch'], function() {
+gulp.task('index',['build'],function(){
+	return 	gulp.src('src/index.html')
+			.pipe(usemin({
+				css: [/*minifyCss(),*/ 'concat'],
+				html: [ /*minifyHtml({empty: true})*/ ],
+				js: [ /*uglify(),rev()*/ ]
+			})).pipe(gulp.dest('.'));
+});
+
+gulp.task('default', ['index', 'watch'], function() {
 	connect.server({
     root: '.',
     livereload: true
   });
 });
 
-gulp.task('reload', ['build'], function() {
+gulp.task('reload', ['index'], function() {
 	gulp.src(['./index.html','./build/eternal-conflict.js']).pipe(connect.reload());
 });
 
