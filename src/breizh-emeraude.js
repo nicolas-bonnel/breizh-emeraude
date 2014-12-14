@@ -9,7 +9,7 @@ var app = angular.module('breizh-emeraude', [
 
 app.config(function($routeProvider, $httpProvider) {
 	$routeProvider
-		.when('/', {onAfterAddingFile
+		.when('/', {
 			controller: 'mainController',
 			templateUrl: 'views/main.html'
 		}).when('/projet', {
