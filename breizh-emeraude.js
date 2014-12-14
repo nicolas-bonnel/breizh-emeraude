@@ -421,7 +421,7 @@ angular.module('breizh-emeraude').controller('mainController',function($scope, $
 
 	$scope.$root.embedded = $location.search().embedded;
 
-	var baseUrl = $location.protocol()+'://'+$location.host()+':'+$location.port()+$location.path()+'#/';
+	var baseUrl = $location.absUrl().split('?')[0];
 
 	$scope.shareUrl = '<iframe src="' + baseUrl+'?embedded=true'
 					+'" width="100%" height="800" frameborder="0"></iframe><p><a href="'+baseUrl+'">Source</a></p>'
