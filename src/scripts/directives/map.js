@@ -11,7 +11,7 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 		},
 		link: function(scope, element) {
 			 //Width and height
-            var w = 800;
+            var w = 880;
             var h = 500;
 
    			var communes = {};
@@ -27,8 +27,8 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
                         .attr("height", h);
 
             var tooltip = d3.select("body")
-				.append("div")  // declare the tooltip div 
-				.attr("class", "tooltip")              // apply the 'tooltip' class
+				.append("md-content")  // declare the tooltip div 
+				.attr("class", "tooltip md-grey-theme")              // apply the 'tooltip' class
 				.style("visibility", 'hidden');
 
    			scope.$watch('data',function(newVal){
@@ -149,7 +149,7 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
             	          //Define map projection
              projection= d3.geo.mercator()
                                    .translate([w/2, h/2])
-                                   .scale([30000])
+                                   .scale([35000])
                                    .center(center);
 
             //Define path generator
@@ -169,17 +169,25 @@ angular.module('breizh-emeraude').directive('mapEmeraude', function($http) {
 		                   .style("stroke", "black");
 
 
-		                jsonCommunes = svg.selectAll("path")
+		                var jc = jsonCommunes = svg.selectAll("path")
 		                   .data(json.features)
 		                   .enter()
 		                   .append("path")
-		                   .attr("d", path)
-		                   .attr("title",function(d){
-		                   		return d.properties['Nom de la commune'];
-		                   })
+		                   .attr("d", path)		      
 		                   .style("fill", function(d){
 		                   		return d3.hsl(120, 0.4, 0.7-parseFloat(d.properties['Densité'])/500);
 		                   });
+
+		                jc.on("mouseenter", function(d) {
+		                	var st = d.properties['Nom de la commune']+'<br/>'+d.properties.Population+' hab.';		
+							tooltip	.html(st)	 
+								.style("visibility", 'visible')
+								.style("left", (d3.event.pageX) + "px")			 
+								.style("top", (d3.event.pageY - 28) + "px");
+							});
+		                jc.on("mouseleave", function(d) {	
+							tooltip.style("visibility", 'hidden');
+						});
 
  					});
                 });

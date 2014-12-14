@@ -1,9 +1,8 @@
-div.tooltip {
+md-content.tooltip {
   position: absolute;	
   text-align: center;		
   padding: 5px;	
-  font: 12px sans-serif;	
-  background: lightsteelblue;	
+  font: 12px sans-serif;
   border: 1px;					
   border-radius: 3px;
  /*  pointer-events: none;	This line needs to be removed */

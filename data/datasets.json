@@ -1,6 +1,7 @@
 [{
 	"name" : "Tourisme Bretagne",
 	"url":"https://www2.mgcloud.fr/dataserver/tourismebretagne/data/",
+	"siteUrl":"http://www.data-tourisme-bretagne.com/",
 	"categories":[
 		{
 			"name":"Tourisme",
@@ -17,7 +18,8 @@
 					},
 					"fields":{
 						"PHOTOS":"img"
-					}
+					},
+					"description":"L’emplacement des campings permet de visualiser aisément la concentration des campings sur le territoire selon deux axes structurants. Le premier est évidemment le littoral. La Côte d’Emeraude est attractive, autour d’un poids lourd du tourisme breton, Saint-Malo. Mais se dessinent un axe structurant, tracé par la Rance et l’importance de l’arrière-pays qui accueille les estivants en quête de tourisme vert."
 				},
 				{
 					"name" : "Plages",
@@ -31,7 +33,8 @@
 					},
 					"fields":{
 						"PHOTOS":"img"
-					}
+					},
+					"description":"Fort logiquement, les plages sont concentrées le long de la Côte d’Emeraude. Mais la visualisation des données publiques touristiques nous rappelle l’existence d’une base de loisirs aménagée en 1979 par le Conseil général à Bétineuc, au sud de Dinan."
 				},
 				{
 					"name" : "Hotels",
@@ -45,7 +48,8 @@
 					},
 					"fields":{
 						"PHOTOS":"img"
-					}
+					},
+					"description":"De manière tout aussi logique, la concentration des hôtels se situe sur la Côte d’Emeraude et dessine également l’axe Rennes-Saint-Malo, structurant pour le Nord de l’Ille-et-Vilaine."
 				},
 				{
 					"name" : "Équipements sportifs",
@@ -57,7 +61,8 @@
 						"lat":"LATITUDE",
 						"lon":"LONGITUDE",
 						"radius":"SPORT"
-					}
+					},
+					"descrpiton":"Ici, les données nous révèlent deux éléments. D’une part, le cœur névralgique de Breizh Emeraude, c’est-à-dire Saint-Malo. D’autre part, le maillage fin du territoire en termes d’équipements sportifs où chaque commune dispose de son stade de foot, chaque centre de bassin de vie des équipements plus divers, salles omnisport notamment."
 				},
 				{
 					"name" : "Evenements",
@@ -78,6 +83,7 @@
 	},{
 	"name" : "Datarmor",
 	"url":"https://www2.mgcloud.fr/dataserver/cg22/data/",
+	"siteUrl":"datarmor.cotesdarmor.fr",
 	"categories":[
 		{
 			"name":"Transport",
@@ -92,7 +98,8 @@
 						"lat":"LATITUDE",
 						"lon":"LONGITUDE",
 						"radius":"NOMBREPLACES"
-					}
+					},
+					"description":"Les données ne concernant que la partie costarmoricaine de Breizh Emeraude, nous voyons de carrefours, l’un placé sur la RN12 (Broons) ; l’autre Dinan. Ici la donnée appelle la donnée. La présence des aires de covoiturage nécessite de disposer des flux de transports pendulaires. Et à travers le pouvoir d’attraction des bassins de Rennes, Saint-Malo et Saint-Brieuc en termes de déplacements quotidiens."
 				},
 				{
 					"name" : "Ports",
@@ -103,7 +110,8 @@
 						"type":"2fields",
 						"lat":"LATITUDE",
 						"lon":"LONGITUDE"
-					}
+					},
+					"description":"Unique port référencé dans la partie costarmoricaine de Breizh Emeraude, le port de Saint-Cast est un port de plaisance de 800 places. Il a été ouvert en 2009."
 				}
 			]
 		},
@@ -150,7 +158,8 @@
 						"field":"CIVILITE",
 						"madame":"pink",
 						"monsieur":"blue"
-					}
+					},
+					"description" : "Les élections municipales de 2014 ont été marquées par l’introduction d’un nouveau mode de scrutin, instaurant notamment la parité dans les communes de plus de 1.000 habitants. Cette parité ne s’est pas traduite à la tête des exécutifs communaux, occupés par un peu plus de 15 % de femmes."
 				},
 				{
 					"name" : "Présidents d’EPCI",
@@ -165,7 +174,8 @@
 						"field":"CIVILITE",
 						"madame":"pink",
 						"monsieur":"blue"
-					}
+					},
+					"description":"Les élections municipales de 2014 ont été marquées par l’introduction d’un nouveau mode de scrutin, instaurant notamment la parité dans les communes de plus de 1.000 habitants. Cette parité est visible à l’échelle des présidents d’EPCI, exclusivement masculins."
 				}
 			]
 		},
@@ -189,7 +199,7 @@
 			"name":"Social",
 			"datasets":[
 				{
-					"name" : "Nombre de bénéficiaires de l'aide compensatrice tierce personne dans les Côtes d'Armor",
+					"name" : "Aide compensatrice tierce personne",
 					"id" : "MONTANT_ACTP",
 					"insee":"CODEINSEE",
 					"inseeColor":{
@@ -204,7 +214,7 @@
 					}
 				},
 				{
-					"name" : "Nombre de places agrées par type d'accueil familial et par commune des Côtes d'Armor de 2010 à 2013",
+					"name" : "Capacité accueil familial",
 					"id" : "ACCUEIL_FAMILIAL_AGREMENT",
 					"insee":"CODINSEE",
 					"inseeColor":{
@@ -223,7 +233,7 @@
 					}
 				},
 				{
-					"name" : "Nbre d’assistants maternels par communes",
+					"name" : "Assistantes maternels",
 					"id" : "ASSMAT",
 					"insee":"CODINSEE",
 					"point":{

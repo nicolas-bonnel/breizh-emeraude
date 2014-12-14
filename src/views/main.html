@@ -1,6 +1,7 @@
  <div class="spinner" ng-show="isSomethingLoading"></div>
- <md-toolbar md-theme="orange" class="md-medium-tall">
-      <h1 class="md-toolbar-tools md-toolbar-tools-top" style="font-size:32px;color:white;text-transform: uppercase">Breizh Data Emeraude</h1>
+ <md-toolbar md-theme="orange" class="md-medium-tall"style="color:white;">
+      <h1 class="md-toolbar-tools md-toolbar-tools-top" style="font-size:32px;text-transform: uppercase">Breizh Data Emeraude</h1>
+      <small layout-align="bottom"><br/>Nous étions au bout de 2 départements. Avec L’open data, nous sommes au centre de notre territoire.</small>
       <a href="#/projet" layout-align="end" class="md-toolbar-tools md-toolbar-tools-bottom" style="font-size:24;color:white">Le projet</a>
   </md-toolbar>
  <div layout="row">
@@ -12,7 +13,7 @@
   </md-toolbar>
   <md-content layout="column">
   <small ng-repeat="dataset in category.datasets">
-    <md-button ng-click="getData(site.url+dataset.id,dataset,site.name);">
+    <md-button ng-click="getData(site.url+dataset.id,dataset,site);">
 {{dataset.name}}
     </md-button>
    </small>
@@ -21,29 +22,35 @@
  </div>
  </div>
 <md-content flex="75" class="md-padding">
+<md-content style="position:absolute">
 <h2>{{presentation.name}}</h2>
-<map-emeraude data="data" presentation="presentation" filtered-data="filteredData">
-
-</map-emeraude>
+</md-content>
+<map-emeraude data="data" presentation="presentation" filtered-data="filteredData"></map-emeraude>
 <div ng-if="presentation.slider">
 	<div ng-if="presentation.slider">Année {{presentation.slider.value}}</div>
 
 	 <md-slider md-discrete ng-model="presentation.slider.value" step="1" min="{{presentation.slider.min}}" max="{{presentation.slider.max}}" aria-label="rating">
     </md-slider>
 </div>
-<div ng-if="site">Les données proviennent du site {{site}}</div>
-<md-toolbar layout="row">
-      <span class="md-toolbar-tools" ng-repeat="(k,d) in filteredData[0]" ng-if="k!='__metadata'" style="font-size:10px" flex>{{k}}</span>
-  </md-toolbar>
- <div layout="column">
- 	<div ng-repeat="dat in filteredData" layout="row">
- 		<div ng-repeat="(k,d) in dat" ng-if="k!='__metadata'" style="font-size:10px" flex>{{d}}</div>
- 	</div>
- </div>
+<md-content ng-if="site"><small>
+	<p>{{presentation.description}}</p>
+	<p>Les données proviennent du site <a ng-href="{{site.siteUrl}}">{{site.name}}</a></p>
+</small></md-content>
+
+
+	<input type="file" nv-file-select uploader="uploader"/>
 
 </md-content>
  </div>
-  <md-toolbar class="md-medium-tall">
-      <span class="md-toolbar-tools md-toolbar-tools-top" >Data Emeraude</span>
+
+ <md-content class="md-padding">
+ <md-toolbar layout="row" ng-if="filteredData[0]">
+      <span class="md-toolbar-tools" ng-repeat="(k,d) in filteredData[0]" ng-if="k!='__metadata' && k!='LATITUDE' && k!='LONGITUDE'" style="font-size:10px" flex>{{k}}</span>
   </md-toolbar>
+ <div layout="column">
+ 	<div ng-repeat="dat in filteredData" layout="row">
+ 		<div ng-repeat="(k,d) in dat" ng-if="k!='__metadata' && k!='LATITUDE' && k!='LONGITUDE'" style="font-size:10px" flex>{{ d | characters:25 }}</div>
+ 	</div>
+ </div>
+ </md-content>
   
