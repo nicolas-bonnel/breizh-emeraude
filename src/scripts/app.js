@@ -14,6 +14,9 @@ app.config(function($routeProvider, $httpProvider) {
 		}).when('/projet', {
 			templateUrl: 'views/projet.html'
 		})
+		.when('/opendata', {
+			templateUrl: 'views/opendata.html'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});

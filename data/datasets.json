@@ -191,7 +191,8 @@
 						"lat":"LATITUDE",
 						"lon":"LONGITUDE",
 						"radius":"NBPLACESBUDGETEES"
-					}
+					},
+					"description":"Les données géolocalisent les 23 places d’accueil sont à disposition des jeunes de 16 à 21 ans dont les familles sont en difficulté. Cependant, une des deux données n’est plus bonne : la villa Printania, située à Dinan, a été vendue en décembre 2011."
 				}
 			]
 		},
