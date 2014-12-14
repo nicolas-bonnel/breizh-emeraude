@@ -8,3 +8,7 @@ md-content.tooltip {
  /*  pointer-events: none;	This line needs to be removed */
 	
 }
+
+.md-input-group > input{
+	width:100%;
+}

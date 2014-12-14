@@ -1,5 +1,5 @@
  <div class="spinner" ng-show="isSomethingLoading"></div>
- <md-toolbar md-theme="orange" class="md-medium-tall"style="color:white;">
+ <md-toolbar md-theme="blue" class="md-medium-tall"style="color:white;" ng-if="!embedded">
       <h1 class="md-toolbar-tools md-toolbar-tools-top" style="font-size:32px;text-transform: uppercase">Breizh Data Emeraude</h1>
       <small layout-align="bottom"><br/>Nous étions au bout de 2 départements. Avec L’open data, nous sommes au centre de notre territoire.</small>
       <a href="#/projet" layout-align="end" class="md-toolbar-tools md-toolbar-tools-bottom" style="font-size:24;color:white">Le projet</a>
@@ -37,13 +37,17 @@
 	<p>Les données proviennent du site <a ng-href="{{site.siteUrl}}">{{site.name}}</a></p>
 </small></md-content>
 
+<md-input-group  ng-if="!embedded" style="width:100%" layout-align="bottom" label="URL d'intégration" readonly="readonly" class="ng-isolate-scope md-grey-theme md-input-has-value ng-valid" aria-invalid="false"> 
 
-	<input type="file" nv-file-select uploader="uploader"/>
+<label for="001" class="ng-binding">URL d'intégration à copier dans un éditeur HTML</label>
+<input id="001" style="width:100%" ng-disabled="isDisabled()" ng-model="shareUrl" type="text" tabindex="false" aria-invalid="false" aria-disabled="false">
+</md-input-group>
+
 
 </md-content>
  </div>
 
- <md-content class="md-padding">
+ <md-content class="md-padding" ng-if="!embedded">
  <md-toolbar layout="row" ng-if="filteredData[0]">
       <span class="md-toolbar-tools" ng-repeat="(k,d) in filteredData[0]" ng-if="k!='__metadata' && k!='LATITUDE' && k!='LONGITUDE'" style="font-size:10px" flex>{{k}}</span>
   </md-toolbar>

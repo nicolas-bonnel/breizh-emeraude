@@ -3,8 +3,7 @@ var app = angular.module('breizh-emeraude', [
 	'ngRoute',
 	'angular-loading-bar',
 	'ngAnimate',
-	'truncate',
-	'angularFileUpload'
+	'truncate'
 ]);
 
 app.config(function($routeProvider, $httpProvider) {
