@@ -1,17 +1,18 @@
  <div class="spinner" ng-show="isSomethingLoading"></div>
  <md-toolbar md-theme="blue" class="md-medium-tall"style="color:white;" ng-if="!embedded">
       <h1 class="md-toolbar-tools md-toolbar-tools-top" style="font-size:32px;text-transform: uppercase">Breizh Data Emeraude</h1>
-      <small layout-align="bottom" style="margin-top:10px;">Nous étions au bout de 2 départements. Avec l’<a href="#/opendata" style="color:white;">open data</a>, nous sommes au centre de notre territoire.</small>
-      <a href="#/projet" layout-align="end" class="md-toolbar-tools md-toolbar-tools-bottom" style="font-size:24;color:white;margin-top:-10px;">Le projet</a>
+      <small layout-align="bottom" style="margin-top:10px;">Nous étions au bout de 2 départements. Avec l’<a href="#/opendata" style="color:white;">open data</a>, nous sommes au centre de notre territoire.
+      <a href="#/projet" style="font-size:20;color:white;">Le projet</a>
+      </small>
   </md-toolbar>
- <div layout="row">
- <div layout="column" flex="25">
- <div layout="column" ng-repeat="site in sites">
-   <div  layout="column" ng-repeat="category in site.categories">
- 	<md-toolbar>
+ <div layout-gt-md="row">
+ <div layout-gt-md="column" flex>
+ <div layout-gt-md="column" ng-repeat="site in sites">
+   <div  layout-gt-md="column" ng-repeat="category in site.categories">
+ 	<md-toolbar hide-md>
       <span class="md-toolbar-tools">{{category.name}}</span>
   </md-toolbar>
-  <md-content layout="column">
+  <md-content layout-gt-md="column" layout-md="row" layout-sm="row">
   <small ng-repeat="dataset in category.datasets">
     <md-button ng-click="getData(site.url+dataset.id,dataset,site);">
 {{dataset.name}}
@@ -48,11 +49,11 @@
  </div>
 
  <md-content class="md-padding" ng-if="!embedded">
- <md-toolbar layout="row" ng-if="filteredData[0]">
+ <md-toolbar layout-gt-md="row" ng-if="filteredData[0]">
       <span class="md-toolbar-tools" ng-repeat="(k,d) in filteredData[0]" ng-if="k!='__metadata' && k!='LATITUDE' && k!='LONGITUDE'" style="font-size:10px" flex>{{k}}</span>
   </md-toolbar>
- <div layout="column">
- 	<div ng-repeat="dat in filteredData" layout="row">
+ <div layout-gt-md="column">
+ 	<div ng-repeat="dat in filteredData" layout-gt-md="row">
  		<div ng-repeat="(k,d) in dat" ng-if="k!='__metadata' && k!='LATITUDE' && k!='LONGITUDE'" style="font-size:10px" flex>{{ d | characters:25 }}</div>
  	</div>
  </div>

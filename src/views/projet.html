@@ -1,11 +1,26 @@
  <div class="spinner" ng-show="isSomethingLoading"></div>
  <md-toolbar md-theme="blue" class="md-medium-tall" style="color:white;">
       <h1 class="md-toolbar-tools md-toolbar-tools-top" style="font-size:32px;text-transform: uppercase">Le projet</h1>
-      <small layout-align="bottom" style="margin-top:10px;">Nous étions au bout de 2 départements. Avec l’<a href="#/opendata" style="color:white;">open data</a>, nous sommes au centre de notre territoire.</small>
-      <a href="#/" layout-align="end" class="md-toolbar-tools md-toolbar-tools-bottom" style="font-size:24;color:white;margin-top:-10px;">Breizh Data Emeraude</a>
+      <small layout-align="bottom" style="margin-top:10px;">Nous étions au bout de 2 départements. Avec l’<a href="#/opendata" style="color:white;">open data</a>, nous sommes au centre de notre territoire.
+      <a href="#/" style="font-size:20;color:white;">Breizh Data Emeraude</a>
+      </small>
+    
   </md-toolbar>
 
   <md-content class="md-padding">
+<h2>Notre intention</h2>
+<p>Vous permettre de préciser les perceptions d’un territoire, à partir de données statistiques
+
+actuelles, de permettre des regards croisés et d’inventer un devenir innovant et pertinent, parce 
+
+que c’est chez nous !</p>
+
+<p>A vous d’utiliser cet outil pour partager le regard des contributeurs et proposer des
+
+visualisations à partir des centres d’intérêt qui vous concernent, tels qu’il existent actuellement.</p>
+
+<h2>Pourquoi?</h2>
+
   <p>La dynamique de libération de données publiques est porteuse d’une opportunité de créer de 
 
 nouvelles représentations et analyses de notre territoire. De nouvelles potentialités émergent 
@@ -92,11 +107,30 @@ regroupant les 154 communes du territoire de Breizh Emeraude.</p>
 
 tableau avec les données brutes. Cela permet de vérifier si le graphe produit, a un impact 
 
-modéré ou pas, sur le territoire.
+modéré ou pas, sur le territoire.</p>
 
-Nous n’avons pas eu le temps nécessaire, mais on pourrait très bien imaginer qu’il soit 
+<h4>Perspectives</h4>
+<p>
+Nous avons produit le temps d’un week-end un prototype de visualisation de données
 
-accompagné d’un texte rappelant le contexte (historique par exemple).</p>
+(DataViz). Cet outil, en Open Source, pourrait être réapproprié par d’autres collectivités locales, 
+
+d’autres territoires pour mieux représentation l’information territoriale. 
+
+Deux perspectives complémentaires sont espérées. Premièrement, nous espérons sensibiliser 
+
+les collectivités locales à la problématique de l’ouverture des données publiques. Notre projet 
+
+met en lumière le nombre de données trop peu nombreux en Ille-et-Vilaine. Secondement, 
+
+nous pourrions bénéficier de l’apport des habitants, citoyens, associations, producteurs de 
+
+données pour augmenter le nombre de jeux de données relatives aux territoires.
+
+Bénéficier de davantage de données permettrait de superposer plusieurs jeux de données à la 
+
+manière de calques. Et ainsi proposer une représentation du territoire la plus fine possible.
+</p>
 
 <h4>Sur la mise en relation des graphes ensembles</h4>
 <img src="data/Calques.jpg" width="1000px;">
@@ -119,6 +153,36 @@ L’informatique permet de visualiser les données de manière dynamique, comme 
 
 <iframe src="http://bl.ocks.org/mbostock/raw/7607535/3223601f85182ce5196d84f1a16952a47282a11d/" width="1000x" height="1000px"></iframe>
 
+<h2>Contribution</h2>
+<p>Ce projet devrait vous permettre de contribuer à la grille d’analyse et de perception de votre
+
+territoire.
+
+Pour cela, le projet dans sa version future donne la possibilité via un formulaire de soumettre 
+
+une donnée statistique.</p>
+<h3>Comment contribuer?</h3>
+<p>Vous pouvez 
+
+- corriger une information existante, 
+
+- ajouter une donnée sur une base déjà existante (ce qui signifie renseigner tous les 
+
+champs du jeu de données concerné), 
+
+- intégrer un nouveau jeu de données.</p>
+
+<h3>Charte de construction de vos fichiers</h3>
+<p>- Vos fichiers de données doivent respecter le format .CSV
+
+- avoir une donnée de géolocalisation (numéros INSEE des communes, etc...)
+
+- avoir un nombre de données fiables et complète sur un domaine
+
+- pro
+
+Votre jeu de données va être soumis à un modérateur et rangé dans la catégorie adéquate.</p>
+
 <h2>Réalisation</h2>
 <p>
 Cette application web a été réalisée lors du #HACKATHON 22 en décembre 2014 à partir des données 
@@ -136,6 +200,8 @@ disponibles sur les sites Datarmor et Bretagne tourisme. </p>
 <li><a href="http://oliviertredan.wordpress.com/">Olivier TREDAN</a>, Docteur sociologie, Data journaliste.</li>
 </li>
 </ul>
+
+
 
 </md-content>
   
